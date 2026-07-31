@@ -41,13 +41,14 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.0
-          name: "Neuro Bharath Patient Manager v1.0.0 (Release)"
+          tag_name: v1.0.1
+          name: "Neuro Bharath Patient Manager v1.0.1 (Release)"
           body: |
-            ## Neuro Bharath Patient Management System - Production Release
-            - Native Android Kotlin Application with Jetpack Compose UI
-            - Offline-first Room Database local persistence
-            - Signed Release APK generated with custom enterprise keystore
+            ## Neuro Bharath Patient Management System - Production Release v1.0.1
+            - Updated Release Build with startup crash fix and safe context unwrapping.
+            - Includes official vector logo and animated SplashScreen.
+            - Offline-first Room Database local persistence with fallback migration.
+            - Signed with official enterprise keystore (O=Neuro Bharath, L=Shivamogga).
           files: app/build/outputs/apk/release/app-release.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
