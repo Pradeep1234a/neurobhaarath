@@ -1,6 +1,8 @@
 package com.neurobharath.patientmanager.ui.theme
 
 import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
@@ -24,6 +26,15 @@ private val DarkColorScheme = darkColorScheme(
     outline = CardBorder
 )
 
+fun Context.findActivity(): Activity? {
+    var currentContext = this
+    while (currentContext is ContextWrapper) {
+        if (currentContext is Activity) return currentContext
+        currentContext = currentContext.baseContext
+    }
+    return null
+}
+
 @Composable
 fun NeuroBharathTheme(
     content: @Composable () -> Unit
@@ -33,9 +44,10 @@ fun NeuroBharathTheme(
 
     if (!view.isInEditMode) {
         SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = Background.hashCode()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
+            val activity = view.context.findActivity()
+            activity?.window?.let { window ->
+                WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
+            }
         }
     }
 

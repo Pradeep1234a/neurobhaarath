@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 enum class NavigationScreen(val title: String) {
+    SPLASH("Splash"),
     AUTH("Authentication"),
     DASHBOARD("Overview Dashboard"),
     PATIENTS("Patient Records"),
@@ -31,7 +32,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: PatientRepository
 
     // Screen State
-    private val _currentScreen = MutableStateFlow(NavigationScreen.DASHBOARD)
+    private val _currentScreen = MutableStateFlow(NavigationScreen.SPLASH)
     val currentScreen: StateFlow<NavigationScreen> = _currentScreen.asStateFlow()
 
     // Auth State

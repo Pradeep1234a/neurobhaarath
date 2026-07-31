@@ -43,6 +43,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "neuro_bharath_db"
                 )
+                .fallbackToDestructiveMigration()
                 .addCallback(AppDatabaseCallback(scope))
                 .build()
                 INSTANCE = instance

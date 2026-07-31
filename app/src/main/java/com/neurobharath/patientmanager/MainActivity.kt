@@ -47,7 +47,17 @@ fun NeuroBharathMainApp(viewModel: MainViewModel) {
     val showAddLabTestDialog by viewModel.showAddLabTestDialog.collectAsState()
     val selectedPatient by viewModel.selectedPatient.collectAsState()
 
-    if (!userSession.isAuthenticated) {
+    if (currentScreen == NavigationScreen.SPLASH) {
+        SplashScreen(
+            onSplashFinished = {
+                if (userSession.isAuthenticated) {
+                    viewModel.navigateTo(NavigationScreen.DASHBOARD)
+                } else {
+                    viewModel.navigateTo(NavigationScreen.AUTH)
+                }
+            }
+        )
+    } else if (!userSession.isAuthenticated || currentScreen == NavigationScreen.AUTH) {
         AuthScreen(
             onLoginSuccess = { username, role -> viewModel.login(username, role) }
         )
@@ -77,6 +87,7 @@ fun NeuroBharathMainApp(viewModel: MainViewModel) {
                     .padding(innerPadding)
             ) {
                 when (currentScreen) {
+                    NavigationScreen.SPLASH -> {}
                     NavigationScreen.AUTH -> AuthScreen(onLoginSuccess = { username, role -> viewModel.login(username, role) })
                     NavigationScreen.DASHBOARD -> DashboardScreen(
                         patients = patients,

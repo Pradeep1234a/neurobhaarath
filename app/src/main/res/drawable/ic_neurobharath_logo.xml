@@ -1,0 +1,42 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+
+    <!-- Premium Circular Glow Background -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M64,4 C30.86,4 4,30.86 4,64 C4,97.14 30.86,124 64,124 C97.14,124 124,97.14 124,64 C124,30.86 97.14,4 64,4 Z" />
+
+    <!-- Outer Cyan Accent Ring -->
+    <path
+        android:strokeColor="#06B6D4"
+        android:strokeWidth="3.5"
+        android:fillColor="#00000000"
+        android:pathData="M64,12 C35.28,12 12,35.28 12,64 C12,92.72 35.28,116 64,116 C92.72,116 116,92.72 116,64 C116,35.28 92.72,12 64,12 Z" />
+
+    <!-- Central Medical Cross + Brain Synapses Symbol -->
+    <path
+        android:fillColor="#3B82F6"
+        android:pathData="M56,36 L72,36 L72,56 L92,56 L92,72 L72,72 L72,92 L56,92 L56,72 L36,72 L36,56 L56,56 Z" />
+
+    <!-- High-tech Cyan Neural Nodes -->
+    <path
+        android:fillColor="#06B6D4"
+        android:pathData="M64,28 A6,6 0 1,1 64,40 A6,6 0 1,1 64,28 Z" />
+    <path
+        android:fillColor="#06B6D4"
+        android:pathData="M64,88 A6,6 0 1,1 64,100 A6,6 0 1,1 64,88 Z" />
+    <path
+        android:fillColor="#06B6D4"
+        android:pathData="M28,64 A6,6 0 1,1 40,64 A6,6 0 1,1 28,64 Z" />
+    <path
+        android:fillColor="#06B6D4"
+        android:pathData="M88,64 A6,6 0 1,1 100,64 A6,6 0 1,1 88,64 Z" />
+
+    <!-- Bright White Core Glow -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M60,60 L68,60 L68,68 L60,68 Z" />
+</vector>
