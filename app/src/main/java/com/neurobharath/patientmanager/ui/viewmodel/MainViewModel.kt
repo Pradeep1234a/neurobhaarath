@@ -83,21 +83,27 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 if (query.isBlank()) repository.allPatients
                 else repository.searchPatients(query)
             }
+            .catch { emit(emptyList()) }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
         appointments = repository.allAppointments
+            .catch { emit(emptyList()) }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
         medications = repository.allMedications
+            .catch { emit(emptyList()) }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
         labTests = repository.allLabTests
+            .catch { emit(emptyList()) }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
         communications = repository.allCommunications
+            .catch { emit(emptyList()) }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
         analytics = repository.allAnalytics
+            .catch { emit(emptyList()) }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
     }
 

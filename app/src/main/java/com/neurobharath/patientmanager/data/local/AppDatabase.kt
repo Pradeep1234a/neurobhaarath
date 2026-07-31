@@ -38,16 +38,28 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context, scope: CoroutineScope): AppDatabase {
             return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "neuro_bharath_db"
-                )
-                .fallbackToDestructiveMigration()
-                .addCallback(AppDatabaseCallback(scope))
-                .build()
-                INSTANCE = instance
-                instance
+                try {
+                    val instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        AppDatabase::class.java,
+                        "neuro_bharath_db"
+                    )
+                    .fallbackToDestructiveMigration()
+                    .addCallback(AppDatabaseCallback(scope))
+                    .build()
+                    INSTANCE = instance
+                    instance
+                } catch (e: Exception) {
+                    val fallbackInstance = Room.inMemoryDatabaseBuilder(
+                        context.applicationContext,
+                        AppDatabase::class.java
+                    )
+                    .fallbackToDestructiveMigration()
+                    .addCallback(AppDatabaseCallback(scope))
+                    .build()
+                    INSTANCE = fallbackInstance
+                    fallbackInstance
+                }
             }
         }
     }
