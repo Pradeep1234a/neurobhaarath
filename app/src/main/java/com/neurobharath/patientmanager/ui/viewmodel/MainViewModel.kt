@@ -68,15 +68,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val analytics: StateFlow<List<AnalyticsEntity>>
 
     init {
-        val database = AppDatabase.getDatabase(application, viewModelScope)
-        repository = PatientRepository(
-            database.patientDao(),
-            database.appointmentDao(),
-            database.medicationDao(),
-            database.labTestDao(),
-            database.communicationDao(),
-            database.analyticsDao()
-        )
+        repository = PatientRepository()
 
         patients = _searchQuery
             .flatMapLatest { query ->
