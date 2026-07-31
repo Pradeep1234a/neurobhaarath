@@ -58,8 +58,13 @@ abstract class AppDatabase : RoomDatabase() {
 
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
-            INSTANCE?.let { database ->
-                scope.launch(Dispatchers.IO) {
+            scope.launch(Dispatchers.IO) {
+                var attempts = 0
+                while (INSTANCE == null && attempts < 10) {
+                    kotlinx.coroutines.delay(100)
+                    attempts++
+                }
+                INSTANCE?.let { database ->
                     populateInitialData(database)
                 }
             }
